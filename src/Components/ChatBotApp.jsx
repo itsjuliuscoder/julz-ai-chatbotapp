@@ -11,7 +11,7 @@ const ChatBotApp = ({onGoBack, chats, setChats, activeChat, setActiveChat, onNew
     const chatEndRef = useRef(null)
     const [showChatList, setShowChatList] = useState(false)
 
-
+    const API_KEY = import.meta.env.VITE_OPENAI_KEY
 
     useEffect(() => {
         const activeChatObj = chats.find((chat) => chat.id === activeChat)
@@ -60,13 +60,13 @@ const ChatBotApp = ({onGoBack, chats, setChats, activeChat, setActiveChat, onNew
             setChats(updatedChats)
             localStorage.setItem("chats", JSON.stringify(updatedChats));
             setIsTyping(true);
-
+            console.log("API KEY ", API_KEY);
             const response = await fetch('https://api.openai.com/v1/chat/completions', 
-                {
+                {   
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer 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`, 
+                        "Authorization": `Bearer ${API_KEY}`, 
                     },
                     body: JSON.stringify({
                         model: "gpt-3.5-turbo",
