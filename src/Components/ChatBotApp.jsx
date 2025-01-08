@@ -60,7 +60,7 @@ const ChatBotApp = ({onGoBack, chats, setChats, activeChat, setActiveChat, onNew
             setChats(updatedChats)
             localStorage.setItem("chats", JSON.stringify(updatedChats));
             setIsTyping(true);
-            console.log("API KEY ", API_KEY);
+            // console.log("API KEY ", API_KEY);
             const response = await fetch('https://api.openai.com/v1/chat/completions', 
                 {   
                     method: "POST",
